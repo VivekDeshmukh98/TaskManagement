@@ -10,8 +10,8 @@ using TaskManagement.Data;
 namespace TaskManagement.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20240718182502_First2")]
-    partial class First2
+    [Migration("20240719060331_basicModelv9sdaasasda")]
+    partial class basicModelv9sdaasasda
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -96,7 +96,8 @@ namespace TaskManagement.Migrations
                 {
                     b.HasOne("TaskManagement.Models.Employee", "Manager")
                         .WithMany("TeamMembers")
-                        .HasForeignKey("ManagerId");
+                        .HasForeignKey("ManagerId")
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.Navigation("Manager");
                 });

@@ -10,8 +10,8 @@ using TaskManagement.Data;
 namespace TaskManagement.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20240718181445_BasicModelV4")]
-    partial class BasicModelV4
+    [Migration("20240719060100_basicModelv9sdaasasd")]
+    partial class basicModelv9sdaasasd
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -43,18 +43,14 @@ namespace TaskManagement.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("EmployeeId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ManagerId")
+                    b.Property<int?>("ManagerId")
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("EmployeeId");
 
                     b.HasIndex("ManagerId");
 
@@ -98,15 +94,10 @@ namespace TaskManagement.Migrations
 
             modelBuilder.Entity("TaskManagement.Models.Employee", b =>
                 {
-                    b.HasOne("TaskManagement.Models.Employee", null)
-                        .WithMany("TeamMembers")
-                        .HasForeignKey("EmployeeId");
-
                     b.HasOne("TaskManagement.Models.Employee", "Manager")
-                        .WithMany()
+                        .WithMany("TeamMembers")
                         .HasForeignKey("ManagerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.Navigation("Manager");
                 });

@@ -13,8 +13,6 @@ namespace TaskManagement.Data
 
         public DbSet<TaskItem> TaskItems { get; set; }
         public DbSet<Employee> Employees { get; set; }
-        public DbSet<CompanyAdmin> CompanyAdmins { get; set; }
-
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -22,7 +20,7 @@ namespace TaskManagement.Data
                 .HasOne(e => e.Manager)
                 .WithMany(e => e.TeamMembers)
                 .HasForeignKey(e => e.ManagerId)
-                .OnDelete(DeleteBehavior.Restrict); // or DeleteBehavior.NoAction for some relationships
+                .OnDelete(DeleteBehavior.Restrict); 
 
             base.OnModelCreating(modelBuilder);
         }

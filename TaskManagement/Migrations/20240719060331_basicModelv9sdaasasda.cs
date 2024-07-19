@@ -2,7 +2,7 @@
 
 namespace TaskManagement.Migrations
 {
-    public partial class sqwewqewsdas : Migration
+    public partial class basicModelv9sdaasasda : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
